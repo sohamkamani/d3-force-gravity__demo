@@ -12,12 +12,8 @@ module.exports = {
 		},
 		"sourceType": "module"
 	},
-	"plugins": [
-		"react"
-	],
+	"plugins": [],
 	"rules": {
-		"react/jsx-uses-react": 1,
-		"react/jsx-uses-vars": 1,
 		"indent": [
 			"error",
 			"tab"
