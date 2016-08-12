@@ -2,6 +2,7 @@
   "name": "d3dnd",
   "version": "0.0.1",
   "private": true,
+	"homepage" : "http://www.sohamkamani.com/d3-force-gravity__demo/",
   "devDependencies": {
     "react-scripts": "0.2.1"
   },
