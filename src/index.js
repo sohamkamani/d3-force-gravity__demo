@@ -31,7 +31,7 @@ const render = () => {
 	context.restore()
 }
 
-const simulation = d3.forceSimulation()
+d3.forceSimulation()
 	.nodes(nodes)
 	.force('g', forceG(width / 2, height / 2)
 		.minRadius(50)
@@ -39,28 +39,3 @@ const simulation = d3.forceSimulation()
 	.force('collide', d3.forceCollide().radius(() => 7).iterations(2))
 	.alphaTarget(0.4)
 	.on('tick', render)
-	// 
-	// const dragsubject = () => simulation.find(d3.event.x, d3.event.y, 5)
-	//
-	// d3.select(canvas)
-	// 	.call(d3.drag()
-	// 		.container(canvas)
-	// 		.subject(dragsubject)
-	// 		.on('start', dragstarted)
-	// 		.on('drag', dragged)
-	// 		.on('end', dragended))
-	//
-	// function dragstarted() {
-	// 	d3.event.subject.fx = d3.event.subject.x
-	// 	d3.event.subject.fy = d3.event.subject.y
-	// }
-	//
-	// function dragged() {
-	// 	d3.event.subject.fx = d3.event.x
-	// 	d3.event.subject.fy = d3.event.y
-	// }
-	//
-	// function dragended() {
-	// 	d3.event.subject.fx = null
-	// 	d3.event.subject.fy = null
-	// }
