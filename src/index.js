@@ -1,15 +1,16 @@
 const d3 = require('d3')
 const forceG = require('./gravity')
 
-const nodes = d3.range(20).map(i => ({
+const canvas = document.querySelector('canvas')
+const {width, height} = canvas
+
+const nodes = d3.range(1).map(i => ({
 	index: i,
 	x: width / 2,
 	y: 0,
 	r: 5
 }))
 
-const canvas = document.querySelector('canvas')
-const {width, height} = canvas
 const context = canvas.getContext('2d')
 const tau = 2 * Math.PI
 
@@ -42,13 +43,13 @@ const render = () => {
 
 const simulation = d3.forceSimulation()
 	.nodes(nodes)
-	// .force('gravity', d3.forceCenter(width / 2, height - 20))
+	// .force('gravity', d3.forceCenter(width / 2, 40))
 	// .force('x1', d3.forceX(width / 2).strength(0.02))
 	// .force('y', d3.forceY(height + 100).strength(0.02))
 	// .force('y', d3.forceY(0).strength(0.02))
-	.force('g', forceG(width / 2, height / 2))
+	.force('g', forceG(width / 2, height / 2).minRadius(30).strength(10000))
 	.force('collide', d3.forceCollide().radius(() => 7).iterations(2))
-	// .alpha(0)
+	.alphaTarget(0.4)
 	.on('tick', render)
 
 const dragsubject = () => simulation.find(d3.event.x, d3.event.y, 5)

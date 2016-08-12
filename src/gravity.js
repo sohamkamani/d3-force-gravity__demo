@@ -1,9 +1,9 @@
 
-const forceGravity = (x, y) => {
+const forceGravity = (x = 0, y = 0) => {
 	let nodes,
 		acceleration,
 		strength = 10000,
-		maxRadius = 40
+		minRadius = 40
 
 	const distanceTo = (x1, y1, x2, y2) => Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2))
 
@@ -25,7 +25,7 @@ const forceGravity = (x, y) => {
 	const force = () => {
 		nodes.forEach((node, i) => {
 			const distance = distanceTo(x, y, node.x, node.y)
-			if (distance < maxRadius) {
+			if (distance < minRadius) {
 				return
 			}
 			node.vx += acceleration[i].x
@@ -36,6 +36,17 @@ const forceGravity = (x, y) => {
 			acceleration[i].x = newAcceleration.x
 			acceleration[i].y = newAcceleration.y
 		})
+		return force
+	}
+
+	force.strength = _strength => {
+		strength = _strength
+		return force
+	}
+
+	force.minRadius = _minRadius => {
+		minRadius = _minRadius
+		return force
 	}
 
 	force.initialize = initialize
